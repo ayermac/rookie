@@ -1,0 +1,11 @@
+{
+    "name": "ayermac/rookie",
+    "description": "PHP Frame",
+    "authors": [
+        {
+            "name": "chenchao",
+            "email": "codemac@163.com"
+        }
+    ],
+    "require": {}
+}
