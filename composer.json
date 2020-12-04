@@ -1,6 +1,11 @@
 {
     "name": "ayermac/rookie",
     "description": "PHP Frame",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
     "authors": [
         {
             "name": "chenchao",
