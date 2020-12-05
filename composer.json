@@ -3,8 +3,12 @@
     "description": "PHP Frame",
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
-        }
+            "App\\": "app/",
+            "core\\": "core/"
+        },
+        "files": [
+            "app/Helpers.php"
+        ]
     },
     "authors": [
         {
@@ -12,5 +16,7 @@
             "email": "codemac@163.com"
         }
     ],
-    "require": {}
+    "require": {
+        "psr/container": "^1.0"
+    }
 }
