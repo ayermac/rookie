@@ -2,6 +2,9 @@
 
 namespace core\database\connection;
 
+use core\database\query\MysqlGrammar;
+use core\database\query\QueryBuilder;
+
 // 继承基础类
 class MysqlConnection extends Connection
 {
@@ -52,6 +55,4 @@ class MysqlConnection extends Connection
     {
         return new QueryBuilder($this, new MysqlGrammar());
     }
-
-
 }

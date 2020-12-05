@@ -17,7 +17,7 @@ class QueryBuilder
 
     public $distinct;
 
-    public $form;
+    public $from;
 
     public $union;
 
@@ -34,9 +34,9 @@ class QueryBuilder
     ];
 
     protected $operators = [
-        '=','<','>','<=','>=','<>','!=','<=>','like','like binary','not like','ilike','&','|','^',
-        '<<','>>','rlike','not rlike','regexp','not regexp','~','~*','!~','!~*','similar to','not similar to',
-        'not ilike','~~*','!~~*'
+        '=', '<', '>', '<=', '>=', '<>', '!=', '<=>', 'like', 'like binary', 'not like', 'ilike', '&', '|', '^',
+        '<<', '>>', 'rlike', 'not rlike', 'regexp', 'not regexp', '~', '~*', '!~', '!~*', 'similar to', 'not similar to',
+        'not ilike', '~~*', '!~~*'
     ];
 
     public function __construct(Connection $connection, $grammar)
@@ -45,13 +45,13 @@ class QueryBuilder
         $this->grammar = $grammar; // 编译成sql的类
     }
 
-    public function table(string $table,$as = null)
+    public function table(string $table, $as = null)
     {
-        return $this->from($table,$as);
+        return $this->from($table, $as);
         // return (clone $this)->from($table,$as);
     }
 
-    public function from($table,$as)
+    public function from($table, $as)
     {
         $this->from = $as ? "{$table} as {$as}" : $table;
         return $this;
@@ -59,8 +59,9 @@ class QueryBuilder
 
     public function get($columns = ['*'])
     {
-        if(! is_array($columns))
-            $columns  = func_get_args();
+        if (!is_array($columns)) {
+            $columns = func_get_args();
+        }
 
         $this->columns = $columns;
         $sql = $this->toSql();
@@ -70,26 +71,25 @@ class QueryBuilder
     // 运行sql
     public function runSql($sql)
     {
-        return $this->connection->select(
-            $sql,$this->getBinds()
-        );
+        return $this->connection->select($sql, $this->getBinds());
     }
 
     public function where($column, $operator = null, $value = null, $joiner = 'and')
     {
-        if ( is_array($column)) // 如果是 where(['id' => '2','name' => 'xxh']) 这种
-            foreach ($column as $col => $value)
-                $this->where($col,'=',$value);
+        // 如果是 where(['id' => '2','name' => 'xxh']) 这种
+        if (is_array($column)) {
+            foreach ($column as $col => $value) {
+                $this->where($col, '=', $value);
+            }
+        }
 
-        if(! in_array($operator,$this->operators)){ // 操作符不存在
+        if (!in_array($operator, $this->operators)) { // 操作符不存在
             $value = $operator;
             $operator = '=';
         }
 
         $type = 'Basic';
-        $this->wheres[] = compact(
-            'type', 'column', 'operator', 'value', 'joiner'
-        ); // 存到wheres变量
+        $this->wheres[] = compact('type', 'column', 'operator', 'value', 'joiner'); // 存到wheres变量
 
         $this->binds[] = $value;
         return $this;
@@ -98,12 +98,12 @@ class QueryBuilder
     public function orWhere($column, $operator = null, $value = null)
     {
 
-        return $this->where($column, $operator, $value ,'or');
+        return $this->where($column, $operator, $value, 'or');
     }
 
-    public function find($id,$columns = ['*'],$key = 'id')
+    public function find($id, $columns = ['*'], $key = 'id')
     {
-        return $this->where($key,$id)->get($columns);
+        return $this->where($key, $id)->get($columns);
     }
 
     public function whereLike($column, $operator = null, $value = null)
@@ -120,7 +120,6 @@ class QueryBuilder
     {
         return $this->binds;
     }
-
 
 
 }
