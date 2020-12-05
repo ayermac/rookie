@@ -1,4 +1,3 @@
-
 <?php
 
 namespace core\database\query;
@@ -23,78 +22,84 @@ class MysqlGrammar
     public function compileSql(QueryBuilder $query)
     {
         $sql = [];
-        foreach ($this->selectComponents as $component)
-            if( isset( $query->{$component}))
+        foreach ($this->selectComponents as $component) {
+            if (isset($query->{$component})) {
                 $sql[$component] = $this->$component($query, $query->$component);
+            }
+        }
 
         return implode($sql);
     }
 
 
-    protected function columns(QueryBuilder $query,$columns)
+    protected function columns(QueryBuilder $query, $columns)
     {
-        if(! $columns)
+        if (!$columns) {
             $columns = ['*'];
+        }
 
         $select = 'select ';
-        if ($query->distinct)
+        if ($query->distinct) {
             $select = 'select distinct ';
+        }
 
-        return $select . implode(',',$columns);
+        return $select . implode(',', $columns);
     }
 
-    protected function from(QueryBuilder $query,$form)
+    protected function from(QueryBuilder $query, $form)
     {
-        return ' from '.$form;
+        return ' from ' . $form;
     }
 
     protected function joins()
     {
-
+        ;
     }
 
-    protected function wheres(QueryBuilder $queryBuilder,$wheres)
+    protected function wheres(QueryBuilder $queryBuilder, $wheres)
     {
-        if(! $wheres)
+        if (!$wheres) {
             return '';
+        }
 
         $where_arrs = [];
-        foreach ($wheres as $index => $where){
-            if(! $index)
+        foreach ($wheres as $index => $where) {
+            if (!$index) {
                 $where['joiner'] = ' where';
+            }
 
-            $where_arrs[] =  sprintf(' %s `%s` %s ?',$where['joiner'], $where['column'], $where['operator']);
+            $where_arrs[] = sprintf(' %s `%s` %s ?', $where['joiner'], $where['column'], $where['operator']);
         }
         return implode($where_arrs);
     }
 
     protected function groups()
     {
-
+        ;
     }
 
     protected function havings()
     {
-
+        ;
     }
 
     protected function orders()
     {
-
+        ;
     }
 
     protected function limit()
     {
-
+        ;
     }
 
     protected function offset()
     {
-
+        ;
     }
 
     protected function lock()
     {
-
+        ;
     }
 }

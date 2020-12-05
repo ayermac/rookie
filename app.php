@@ -136,6 +136,8 @@ class App implements ContainerInterface
             'pipeline' => \core\PipeLine::class,
             'config' => \core\Config::class,
             'db' => \core\Database::class,
+            \core\view\ViewInterface::class => \core\view\Blade::class,
+            'log' => \core\log\Logger::class,
         ];
 
         foreach ($registers as $name => $concrete) {

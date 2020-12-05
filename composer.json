@@ -17,6 +17,8 @@
         }
     ],
     "require": {
-        "psr/container": "^1.0"
+        "psr/container": "^1.0",
+        "duncan3dc/blade": "^4.10",
+        "psr/log": "^1.1"
     }
 }

@@ -21,6 +21,8 @@ class QueryBuilder
 
     public $union;
 
+    public $wheres;
+
     public $bindings = [
         'select' => [],
         'from' => [],

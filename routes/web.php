@@ -13,13 +13,33 @@ $router->get('/config', function () {
 $router->get('/db', function () {
     $id = 1;
     var_export(
-        App::getContainer()->get('db')->find('select * from users where id = ?', [$id])
+        App::getContainer()->get('db')->select('select * from users where id = ?', [$id])
     );
 });
 
-//$router->get('/query', function () {
-//    $id = 1;
-//    var_export(
-//        App::getContainer()->get('db')->table('users')->where('id', 2)->get()
-//    );
-//});
+$router->get('/query', function () {
+    var_export(
+        App::getContainer()->get('db')->table('users')->where('id', '=', 1)->get()
+    );
+});
+
+$router->get('/model', function () {
+    $users = \App\User::where('id', '=', 1)->get();
+    foreach ($users as $user) {
+        print_r($user);
+        echo $user->id;
+        echo $user->SayHello();
+    }
+});
+
+$router->get('/controller', 'UserController@index');
+
+$router->get('view/blade', function () {
+    $str = '这是blade模板引擎';
+
+    return view('blade.index', compact('str'));
+});
+
+$router->get('log/stack', function () {
+    App::getContainer()->get('log')->debug('debug');
+});
