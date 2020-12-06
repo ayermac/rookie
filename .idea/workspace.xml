@@ -20,14 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14acfbb9-5677-4e46-b655-c428245c3135" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rookie.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/connection/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/connection/Connection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/connection/MysqlConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/connection/MysqlConnection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/model/Builder.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/model/Builder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/model/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/model/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/query/QueryBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/query/QueryBuilder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +97,7 @@
       <workItem from="1607004724116" duration="728000" />
       <workItem from="1607080129368" duration="636000" />
       <workItem from="1607136308193" duration="17089000" />
+      <workItem from="1607227902118" duration="1177000" />
     </task>
     <servers />
   </component>

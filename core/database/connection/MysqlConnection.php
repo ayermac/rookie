@@ -1,5 +1,4 @@
 <?php
-
 namespace core\database\connection;
 
 use core\database\query\MysqlGrammar;
@@ -9,14 +8,23 @@ use core\database\query\QueryBuilder;
 class MysqlConnection extends Connection
 {
 
-    protected static $connection;
+    /**
+     * @var object
+     */
+    protected static object $connection;
 
     public function getConnection()
     {
         return self::$connection;
     }
 
-    // 执行sql
+    /**
+     * SQL查询
+     * @param string $sql SQL语句
+     * @param array $bindings 绑定
+     * @param bool $useReadPdo 是否使用只读
+     * @return mixed
+     */
     public function select($sql, $bindings = [], $useReadPdo = true)
     {
         $statement = $this->pdo;
@@ -29,6 +37,13 @@ class MysqlConnection extends Connection
         }
     }
 
+    /**
+     * SQL查询
+     * @param string $sql SQL语句
+     * @param array $bindings 绑定
+     * @param bool $useReadPdo 是否使用只读
+     * @return mixed
+     */
     public function find($sql, $bindings = [], $useReadPdo = true)
     {
         $statement = $this->pdo;
@@ -42,7 +57,12 @@ class MysqlConnection extends Connection
     }
 
 
-    // 调用不存在的方法 调用一个新的查询构造器
+    /**
+     * 调用不存在的方法 调用一个新的查询构造器
+     * @param string $method 调用方法
+     * @param string $parameters 参数
+     * @return mixed
+     */
     public function __call($method, $parameters)
     {
         // 返回QueryBuilder类
@@ -50,7 +70,10 @@ class MysqlConnection extends Connection
     }
 
 
-    // 创建新的查询器
+    /**
+     * 创建新的查询器
+     * @return QueryBuilder
+     */
     public function newBuilder()
     {
         return new QueryBuilder($this, new MysqlGrammar());

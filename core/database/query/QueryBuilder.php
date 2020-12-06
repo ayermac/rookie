@@ -122,8 +122,4 @@ class QueryBuilder
     {
         return $this->binds;
     }
-
-
 }
-
-

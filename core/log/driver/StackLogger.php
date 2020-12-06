@@ -48,10 +48,13 @@ class StackLogger extends AbstractLogger
      */
     public function log($level, $message, array $context = array())
     {
-        if (is_array($message))
-            $message = var_export($message, true) . var_export($context, true); // 设置true 不输出
-        else if (is_string($message)) // 内容是字符串 并且 $context是数组 替换占位符
+        if (is_array($message)) {
+            // 设置true 不输出
+            $message = var_export($message, true) . var_export($context, true);
+        } elseif (is_string($message)) {
+            // 内容是字符串 并且 $context是数组 替换占位符
             $message = $this->interpolate($message, $context);
+        }
 
         $message = sprintf($this->config['format'], date('y-m-d h:m:s'), $level, $message); // 根据配置文件格式化
 

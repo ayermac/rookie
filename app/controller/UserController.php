@@ -8,7 +8,6 @@ use core\request\RequestInterface;
 // 继承基础控制器
 class UserController extends Controller
 {
-
     protected $middleware = [ // 这个控制器的中间件
         ControllerMiddleWare::class
     ];
@@ -24,5 +23,4 @@ class UserController extends Controller
     public function index2()
     {
     }
-
 }

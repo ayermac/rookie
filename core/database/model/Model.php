@@ -1,10 +1,8 @@
 <?php
-
 namespace core\database\model;
 
 class Model
 {
-
     // 绑定的数据库连接
     protected $connection;
 
@@ -37,32 +35,34 @@ class Model
     // 获取表名称     没有表名称  就返回 模型(小写)+s
     public function getTable()
     {
-        if( $this->table)
+        if ($this->table) {
             return $this->table;
+        }
 
         $class_name = get_class($this);
-        $class_arr = explode('\\',$class_name);
+        $class_arr = explode('\\', $class_name);
 
         $table = lcfirst(end(
             $class_arr
         ));
 
-        return  $table .'s';
+        return $table . 's';
     }
-
 
 
     public function setOriginalValue($key, $val)
     {
-        if(! $this->original)
+        if (!$this->original) {
             $this->original = new \stdClass();
+        }
         $this->original->$key = $val;
     }
 
     public function setAttribute($key, $val)
     {
-        if(! $this->attribute)
+        if (!$this->attribute) {
             $this->attribute = new \stdClass();
+        }
         $this->attribute->$key = $val;
     }
 
@@ -87,16 +87,20 @@ class Model
     public function diff()
     {
         $diff = [];
-        if( $this->attribute == $this->original) // 没改变
+        // 没改变
+        if ($this->attribute == $this->original) {
             return $diff;
+        }
 
-        foreach ($this->original as $origin_key => $origin_val)
-            if( $this->attribute->$origin_key != $origin_val) // 改变了
+        foreach ($this->original as $origin_key => $origin_val) {
+            // 改变了
+            if ($this->attribute->$origin_key != $origin_val) {
                 $diff[$origin_key] = $this->attribute->$origin_key;
+            }
+        }
 
         return $diff;
     }
-
 
 
     public function __get($name)
@@ -108,7 +112,7 @@ class Model
     //因此: User::where() 与 (new User)->where() 是一样的
     public static function __callStatic($method, $args)
     {
-        return  (new static())->$method(...$args);
+        return (new static())->$method(...$args);
     }
 
 
@@ -116,6 +120,6 @@ class Model
     {
         return (new Builder(
             $this->connection->newBuilder()
-        )) ->setModel($this)->$method(...$args);
+        ))->setModel($this)->$method(...$args);
     }
 }
